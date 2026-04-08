@@ -1,0 +1,106 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face Shape Detector - Hairstyle Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Face Shape Detector</h1>
+            <p class="subtitle">Discover your perfect hairstyle based on your face geometry</p>
+        </header>
+
+        <main>
+            <!-- Upload Section -->
+            <section class="upload-section" id="uploadSection">
+                <div class="upload-area" id="dropZone">
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <div class="upload-icon">📸</div>
+                    <h3>Upload Your Photo</h3>
+                    <p>Drag & drop or click to browse</p>
+                    <p class="hint">Supported: JPG, PNG, WebP (Max 10MB)</p>
+                </div>
+                
+                <div class="guidelines">
+                    <h4>📋 Photo Guidelines:</h4>
+                    <ul>
+                        <li>✓ Face forward, well-lit photo</li>
+                        <li>✓ Remove glasses/hats if possible</li>
+                        <li>✓ Neutral expression</li>
+                        <li>✓ Clear, high-quality image</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Loading Section -->
+            <section class="loading-section" id="loadingSection" style="display: none;">
+                <div class="loader"></div>
+                <p>Analyzing your face shape...</p>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection" style="display: none;">
+                <div class="results-grid">
+                    <!-- Detected Face Shape -->
+                    <div class="result-card shape-card">
+                        <h3>🎭 Your Face Shape</h3>
+                        <div class="shape-result">
+                            <div class="shape-name" id="primaryShape">-</div>
+                            <div class="confidence" id="confidence">-</div>
+                        </div>
+                        <div class="all-shapes" id="allShapes"></div>
+                    </div>
+
+                    <!-- Uploaded Image -->
+                    <div class="result-card image-card">
+                        <h3>📷 Your Photo</h3>
+                        <img id="uploadedImage" src="" alt="Your face">
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations">
+                    <h3>💇 Recommended Hairstyles</h3>
+                    <div class="recommendation-list" id="recommendedStyles"></div>
+                </div>
+
+                <!-- Styles to Avoid -->
+                <div class="avoid-section">
+                    <h3>⚠️ Styles to Avoid</h3>
+                    <div class="avoid-list" id="avoidStyles"></div>
+                </div>
+
+                <!-- Reasoning -->
+                <div class="reasoning">
+                    <h3>📖 Why These Recommendations?</h3>
+                    <div id="reasoningText"></div>
+                </div>
+
+                <button class="btn-primary" onclick="resetApp()">
+                    🔄 Analyze Another Photo
+                </button>
+            </section>
+
+            <!-- Error Section -->
+            <section class="error-section" id="errorSection" style="display: none;">
+                <div class="error-message">
+                    <h3>⚠️ Oops!</h3>
+                    <p id="errorText"></p>
+                    <button class="btn-primary" onclick="resetApp()">
+                        Try Again
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by AI • Built with ❤️</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
